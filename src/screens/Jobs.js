@@ -4,7 +4,7 @@ import React from 'react'
 const Jobs = () => {
   return (
     <View>
-      <Text>Jobs</Text>
+      <Text>Jobs is here again</Text>
     </View>
   )
 }

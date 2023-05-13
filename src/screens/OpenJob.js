@@ -4,7 +4,7 @@ import React from 'react'
 const OpenJob = () => {
   return (
     <View>
-      <Text>OpenJob today</Text>
+      <Text>OpenJob today </Text>
     </View>
   )
 }
