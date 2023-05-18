@@ -38,7 +38,7 @@ const GetStarted = ({navigation}) => {
                     <Text className="font-[poppins] text-sm">
                         Already have an account ?
                     </Text>
-                    <TouchableOpacity className="" onPress={() => navigation.navigate('login')}>
+                    <TouchableOpacity className="" onPress={() => navigation.navigate('SignUp')}>
                         <Text className="font-[poppins-m] ml-2 text-sm ">
                             log in
                         </Text>

@@ -3,7 +3,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GetStarted from '../screens/GetStarted';
-import BottomTabs from './BottomTabs';
+import SignUp from '../screens/SignUp';
+import { Register } from '../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,9 +14,12 @@ const NavContainer = () => {
             <Stack.Navigator screenOptions={{ headerShadowVisible: false, headerShown: false }}>
                 <Stack.Screen name="Get started" component={GetStarted}  />
                 {/* <Stack.Screen name="bottomtabs" component={BottomTabs}  options={{headerShown: false}}/> */}
+                <Stack.Screen  name='signup' component={SignUp}/>
+                <Stack.Screen  name='register' component={Register}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
 };
 
 export default NavContainer;
+ 
