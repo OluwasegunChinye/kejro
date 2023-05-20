@@ -20,12 +20,12 @@ const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
         .min(1, 'Too short!')
         .max(15, 'Too long!')
-        .required('Enter a valid name'),
+        .required('required'),
 
     lastName: Yup.string()
         .min(1, 'Too short!')
         .max(15, 'Too long!')
-        .required('Enter a valid name'),
+        .required('required'),
 
     email: Yup.string().email(),
 
@@ -90,7 +90,7 @@ const SignUp = ({ navigation }) => {
                             <View style={{ marginTop: height * 0.1 }}>
                                 <AppInput
                                     placeholder="first name"
-                                    autoCorrect="false"
+                                    autoCorrect={false}
                                     autoComplete="off"
                                     autoCapitalize="words"
                                     value={values.firstName}
@@ -98,7 +98,7 @@ const SignUp = ({ navigation }) => {
                                     onBlur={() => setFieldTouched('firstName')}
                                 />
                                 {touched.firstName && errors.firstName && (
-                                    <Text className="font-[poppins] text-xs">
+                                    <Text className="font-[poppins] text-xs text-red-500">
                                         {errors.firstName}
                                     </Text>
                                 )}
@@ -107,14 +107,14 @@ const SignUp = ({ navigation }) => {
                                 <AppInput
                                     placeholder="last name"
                                     autoComplete="off"
-                                    autoCorrect="false"
+                                    autoCorrect={false}
                                     autoCapitalize="words"
                                     value={values.lastName}
                                     onChangeText={handleChange('lastName')}
                                     onBlur={() => setFieldTouched('lastName')}
                                 />
                                 {touched.lastName && errors.lastName && (
-                                    <Text className="font-[poppins] text-xs">
+                                    <Text className="font-[poppins] text-xs text-red-500">
                                         {errors.lastName}
                                     </Text>
                                 )}
@@ -124,6 +124,7 @@ const SignUp = ({ navigation }) => {
                                 <AppInput
                                     placeholder="enter email"
                                     autoCapitalize="none"
+                                    autoCorrect={false}
                                     value={values.email}
                                     onChangeText={handleChange('email')}
                                     onBlur={() => setFieldTouched('email')}
