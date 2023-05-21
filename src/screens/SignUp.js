@@ -125,6 +125,7 @@ const SignUp = ({ navigation }) => {
                                     placeholder="enter email"
                                     autoCapitalize="none"
                                     autoCorrect={false}
+                                    keyboardType='email-address'
                                     value={values.email}
                                     onChangeText={handleChange('email')}
                                     onBlur={() => setFieldTouched('email')}
