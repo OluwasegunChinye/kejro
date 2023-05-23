@@ -13,6 +13,8 @@ import * as Yup from 'yup';
 
 import { AppBtn, AppInput } from '../components/index';
 import { COLORS } from '../constants/theme';
+import { auth } from '../../config/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -55,11 +57,21 @@ const SignUp = ({ navigation }) => {
                 confirmPassword: '',
             }}
             validationSchema={SignupSchema}
-            onSubmit={(values) =>
-                navigation.navigate('register', {
-                    userName: values.firstName,
-                })
-            }
+            onSubmit={async (values) => {
+                try {
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        (email = values.email),
+                        (password = values.password)
+                    );
+                    navigation.navigate('register', {
+                        userName: values.firstName,
+                        lastName: values.lastName,
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
+            }}
         >
             {({
                 values,
@@ -125,7 +137,7 @@ const SignUp = ({ navigation }) => {
                                     placeholder="enter email"
                                     autoCapitalize="none"
                                     autoCorrect={false}
-                                    keyboardType='email-address'
+                                    keyboardType="email-address"
                                     value={values.email}
                                     onChangeText={handleChange('email')}
                                     onBlur={() => setFieldTouched('email')}

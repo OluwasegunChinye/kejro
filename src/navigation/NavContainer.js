@@ -18,8 +18,8 @@ const NavContainer = () => {
                     headerShown: false,
                 }}
             >
-                <Stack.Screen name="register" component={Register} />
                 <Stack.Screen name="Get started" component={GetStarted} />
+                <Stack.Screen name="register" component={Register} />
                 {/* <Stack.Screen name="bottomtabs" component={BottomTabs}  options={{headerShown: false}}/> */}
                 <Stack.Screen name="signup" component={SignUp} />
             </Stack.Navigator>

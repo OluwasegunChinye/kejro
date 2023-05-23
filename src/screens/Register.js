@@ -24,7 +24,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Register = ({ route, navigation }) => {
-    // const user = route.params.userName;
+    const {userName, lastName} = route.params;
 
     const [profile, setProfile] = useState(null);
 
@@ -48,10 +48,10 @@ const Register = ({ route, navigation }) => {
         <View className="flex-1" style={{ backgroundColor: COLORS.secondary }}>
             <View className="items-center" style={{ marginTop: height * 0.1 }}>
                 <Text
-                    className="font-[poppins-m] text-xl"
+                    className="font-[poppins-m] text-lg"
                     style={{ color: COLORS.primary }}
                 >
-                    Hi Joe 👋
+                    Hi {userName} 👋
                 </Text>
                 <Text
                     className="font-[poppins] mt-2 text-xs"

@@ -1,10 +1,13 @@
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView, Dimensions } from 'react-native';
+
+
+const { height, width } = Dimensions.get('screen');
 
 const Home = () => {
     return (
-        <View className="items-center">
+        <SafeAreaView className="items-center">
             <Text>Home</Text>
-        </View>
+        </SafeAreaView>
     );
 };
 
