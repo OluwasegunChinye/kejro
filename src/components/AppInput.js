@@ -15,7 +15,7 @@ const AppInput = ({
 }) => {
     return (
         <TextInput
-            style={{width: width * 0.75}}
+            style={{width: width * 0.75, fontSize: 12, }}
             placeholderTextColor={COLORS.primary}
             className="rounded-md font-[poppins] py-3 bg-white pl-3"
             placeholder={placeholder}

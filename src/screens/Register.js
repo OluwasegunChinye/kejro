@@ -12,43 +12,46 @@ import * as Yup from 'yup';
 import * as ImagePicker from 'expo-image-picker';
 
 import { COLORS } from '../constants/theme';
-import { Icons } from '../components';
+import { AppBtn, AppInput, Icons } from '../components';
 import imgPlaceHolder from '../../assets/klogo.png';
 
 const { height, width } = Dimensions.get('screen');
+
+const SignupSchema = Yup.object().shape({
+    city: Yup.string().required('required'),
+    country: Yup.string().required('required'),
+    role: Yup.string().required('required'),
+});
 
 const Register = ({ route, navigation }) => {
     // const user = route.params.userName;
 
     const [profile, setProfile] = useState(null);
 
-      const pickImage = async () => {
-          // No permissions request is necessary for launching the image library
-          let result = await ImagePicker.launchImageLibraryAsync({
-              mediaTypes: ImagePicker.MediaTypeOptions.Images,
-              allowsEditing: true,
-              aspect: [4, 3],
-              quality: 1,
-          });
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
 
         //   console.log(result);
 
-          if (!result.canceled) {
-              setProfile(result.assets[0].uri);
-          }
-      };
+        if (!result.canceled) {
+            setProfile(result.assets[0].uri);
+        }
+    };
 
     return (
-        <ScrollView
-            className="flex-1"
-            style={{ backgroundColor: COLORS.secondary }}
-        >
+        <View className="flex-1" style={{ backgroundColor: COLORS.secondary }}>
             <View className="items-center" style={{ marginTop: height * 0.1 }}>
                 <Text
                     className="font-[poppins-m] text-xl"
                     style={{ color: COLORS.primary }}
                 >
-                    Hi Joe 👋{' '}
+                    Hi Joe 👋
                 </Text>
                 <Text
                     className="font-[poppins] mt-2 text-xs"
@@ -67,14 +70,90 @@ const Register = ({ route, navigation }) => {
                         onPress={pickImage}
                     >
                         <Icons
-                            name="add-circle"
-                            size={30}
+                            name="camera"
+                            size={26}
                             color={COLORS.tertiary}
                         />
                     </TouchableOpacity>
                 </View>
             </View>
-        </ScrollView>
+
+            <Formik
+                initialValues={{
+                    city: '',
+                    country: '',
+                    role: '',
+                }}
+                validationSchema={SignupSchema}
+                onSubmit={(values) => {}}
+            >
+                {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    setFieldTouched,
+                    handleSubmit,
+                }) => (
+                    <ScrollView>
+                        <View className="items-center mt-8">
+                            <View className="">
+                                <AppInput
+                                    placeholder="enter your city"
+                                    // autoComplete="off"
+                                    autoCapitalize="words"
+                                    value={values.city}
+                                    onChangeText={handleChange('city')}
+                                    onBlur={() => setFieldTouched('city')}
+                                />
+                                {touched.city && errors.city && (
+                                    <Text className="font-[poppins] text-xs text-red-500 pl-1 ">
+                                        {errors.city}
+                                    </Text>
+                                )}
+                            </View>
+                            <View className="mt-6">
+                                <AppInput
+                                    placeholder="enter your country"
+                                    // autoComplete="off"
+                                    autoCapitalize="words"
+                                    value={values.country}
+                                    onChangeText={handleChange('country')}
+                                    onBlur={() => setFieldTouched('country')}
+                                />
+                                {touched.country && errors.country && (
+                                    <Text className="font-[poppins] text-xs text-red-500 pl-1 ">
+                                        {errors.country}
+                                    </Text>
+                                )}
+                            </View>
+                            <View className="mt-6">
+                                <AppInput
+                                    placeholder="enter your job title"
+                                    // autoComplete="off"
+                                    autoCapitalize="words"
+                                    value={values.role}
+                                    onChangeText={handleChange('role')}
+                                    onBlur={() => setFieldTouched('role')}
+                                />
+                                {touched.role && errors.role && (
+                                    <Text className="font-[poppins] text-xs text-red-500 pl-1 ">
+                                        {errors.role}
+                                    </Text>
+                                )}
+                            </View>
+
+                            <View className=" mt-10">
+                                <AppBtn
+                                    title="Submit"
+                                    backgroundColor={COLORS.primary}
+                                />
+                            </View>
+                        </View>
+                    </ScrollView>
+                )}
+            </Formik>
+        </View>
     );
 };
 

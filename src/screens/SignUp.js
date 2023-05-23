@@ -98,7 +98,7 @@ const SignUp = ({ navigation }) => {
                                     onBlur={() => setFieldTouched('firstName')}
                                 />
                                 {touched.firstName && errors.firstName && (
-                                    <Text className="font-[poppins] text-xs text-red-500">
+                                    <Text className="font-[poppins] text-xs text-red-500 pl-1">
                                         {errors.firstName}
                                     </Text>
                                 )}
@@ -114,7 +114,7 @@ const SignUp = ({ navigation }) => {
                                     onBlur={() => setFieldTouched('lastName')}
                                 />
                                 {touched.lastName && errors.lastName && (
-                                    <Text className="font-[poppins] text-xs text-red-500">
+                                    <Text className="font-[poppins] text-xs text-red-500 pl-1">
                                         {errors.lastName}
                                     </Text>
                                 )}
@@ -131,7 +131,7 @@ const SignUp = ({ navigation }) => {
                                     onBlur={() => setFieldTouched('email')}
                                 />
                                 {touched.email && errors.email && (
-                                    <Text className="font-[poppins] text-xs text-red-500">
+                                    <Text className="font-[poppins] text-xs text-red-500 pl-1">
                                         {errors.email}
                                     </Text>
                                 )}
@@ -146,7 +146,7 @@ const SignUp = ({ navigation }) => {
                                     onChangeText={handleChange('password')}
                                 />
                                 {touched.password && errors.password && (
-                                    <Text className="font-[poppins] text-xs text-red-500 ">
+                                    <Text className="font-[poppins] text-xs text-red-500 pl-1 ">
                                         {errors.password}
                                     </Text>
                                 )}
@@ -166,7 +166,7 @@ const SignUp = ({ navigation }) => {
                                 />
                                 {touched.confirmPassword &&
                                     errors.confirmPassword && (
-                                        <Text className="font-[poppins] text-xs text-red-500">
+                                        <Text className="font-[poppins] text-xs text-red-500 pl-1">
                                             {errors.confirmPassword}
                                         </Text>
                                     )}
