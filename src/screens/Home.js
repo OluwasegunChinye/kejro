@@ -1,12 +1,18 @@
 import { View, Text, SafeAreaView, Dimensions } from 'react-native';
+import { COLORS } from '../constants/theme';
 
 const { height, width } = Dimensions.get('screen');
 
-const Home = ({ navigation, route }) => {
+const Home = () => {
     return (
-        <SafeAreaView className="items-center">
-            <Text>Home</Text>
-        </SafeAreaView>
+        <View
+            className=" flex-1 items-center"
+            style={{ backgroundColor: COLORS.secondary }}
+        >
+            <View className="items-center" style={{ marginTop: height * 0.1 }}>
+                <Text>Home</Text>
+            </View>
+        </View>
     );
 };
 

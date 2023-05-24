@@ -1,12 +1,19 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, Dimensions } from 'react-native';
+import { COLORS } from '../constants/theme';
+
+const { height, width } = Dimensions.get('screen');
 
 const Message = () => {
-  return (
-    <View>
-      <Text>Message</Text>
-    </View>
-  )
-}
+    return (
+        <View
+            className=" flex-1 items-center"
+            style={{ backgroundColor: COLORS.secondary }}
+        >
+            <View className="items-center" style={{ marginTop: height * 0.1 }}>
+                <Text>Message</Text>
+            </View>
+        </View>
+    );
+};
 
-export default Message
+export default Message;
