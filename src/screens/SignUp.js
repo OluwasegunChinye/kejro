@@ -65,7 +65,7 @@ const SignUp = ({ navigation }) => {
                         (password = values.password)
                     );
                     navigation.navigate('register', {
-                        userName: values.firstName,
+                        firstName: values.firstName,
                         lastName: values.lastName,
                     });
                 } catch (error) {

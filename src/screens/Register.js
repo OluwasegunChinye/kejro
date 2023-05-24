@@ -10,12 +10,18 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as ImagePicker from 'expo-image-picker';
+// import { getAuth } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
+import { db, auth } from '../../config/firebase';
 
 import { COLORS } from '../constants/theme';
 import { AppBtn, AppInput, Icons } from '../components';
 import imgPlaceHolder from '../../assets/klogo.png';
 
 const { height, width } = Dimensions.get('screen');
+
+// const auth = getAuth();
+// const user = auth.currentUser;
 
 const SignupSchema = Yup.object().shape({
     city: Yup.string().required('required'),
@@ -24,7 +30,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Register = ({ route, navigation }) => {
-    const {userName, lastName} = route.params;
+    const { firstName, lastName } = route.params;
 
     const [profile, setProfile] = useState(null);
 
@@ -37,7 +43,7 @@ const Register = ({ route, navigation }) => {
             quality: 1,
         });
 
-        //   console.log(result);
+        // console.log(result);
 
         if (!result.canceled) {
             setProfile(result.assets[0].uri);
@@ -51,7 +57,7 @@ const Register = ({ route, navigation }) => {
                     className="font-[poppins-m] text-lg"
                     style={{ color: COLORS.primary }}
                 >
-                    Hi {userName} 👋
+                    Hi {firstName} 👋
                 </Text>
                 <Text
                     className="font-[poppins] mt-2 text-xs"
@@ -85,7 +91,23 @@ const Register = ({ route, navigation }) => {
                     role: '',
                 }}
                 validationSchema={SignupSchema}
-                onSubmit={(values) => {}}
+                onSubmit={async (values) => {
+                    try {
+                        const user = auth.currentUser;
+                        await addDoc(collection(db, 'Users'), {
+                            city: values.city,
+                            country: values.country,
+                            role: values.role,
+                            profile: profile,
+                            uid: user.uid,
+                            firstName,
+                            lastName,
+                        });
+                        navigation.replace('hometabs');
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }}
             >
                 {({
                     values,
@@ -147,6 +169,7 @@ const Register = ({ route, navigation }) => {
                                 <AppBtn
                                     title="Submit"
                                     backgroundColor={COLORS.primary}
+                                    onPress={handleSubmit}
                                 />
                             </View>
                         </View>

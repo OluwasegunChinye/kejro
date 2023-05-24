@@ -1,9 +1,8 @@
 import { View, Text, SafeAreaView, Dimensions } from 'react-native';
 
-
 const { height, width } = Dimensions.get('screen');
 
-const Home = () => {
+const Home = ({ navigation, route }) => {
     return (
         <SafeAreaView className="items-center">
             <Text>Home</Text>
