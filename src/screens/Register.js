@@ -10,9 +10,7 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as ImagePicker from 'expo-image-picker';
-// import { getAuth } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
-import { db, auth } from '../../config/firebase';
+import { db, auth, addDoc, collection } from '../../config/firebase';
 
 import { COLORS } from '../constants/theme';
 import { AppBtn, AppInput, Icons } from '../components';
@@ -20,8 +18,6 @@ import imgPlaceHolder from '../../assets/klogo.png';
 
 const { height, width } = Dimensions.get('screen');
 
-// const auth = getAuth();
-// const user = auth.currentUser;
 
 const SignupSchema = Yup.object().shape({
     city: Yup.string().required('required'),
@@ -103,6 +99,7 @@ const Register = ({ route, navigation }) => {
                             firstName,
                             lastName,
                         });
+
                         navigation.replace('hometabs');
                     } catch (error) {
                         console.log(error);

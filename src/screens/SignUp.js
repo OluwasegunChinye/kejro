@@ -13,8 +13,7 @@ import * as Yup from 'yup';
 
 import { AppBtn, AppInput } from '../components/index';
 import { COLORS } from '../constants/theme';
-import { auth } from '../../config/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, createUserWithEmailAndPassword } from '../../config/firebase';
 
 const { height, width } = Dimensions.get('screen');
 
