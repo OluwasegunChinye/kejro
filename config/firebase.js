@@ -4,6 +4,8 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     onAuthStateChanged,
+    signOut,
+    signInWithEmailAndPassword,
 } from 'firebase/auth';
 import {
     getFirestore,
@@ -13,7 +15,7 @@ import {
     doc,
     onSnapshot,
     query,
-    where
+    where,
 } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -44,4 +46,6 @@ export {
     onSnapshot,
     query,
     where,
+    signOut,
+    signInWithEmailAndPassword,
 };

@@ -15,12 +15,12 @@ import {
     onAuthStateChanged,
     getDoc,
     getAuth,
+    onSnapshot,
 } from '../../config/firebase';
 
 import imgPlaceHolder from '../../assets/klogo.png';
 
 const { height, width } = Dimensions.get('screen');
-
 
 const Home = () => {
     const [profile, setProfile] = useState(null);
@@ -28,21 +28,21 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const uid = user.uid;
-                const docSnap = await getDoc(doc(db, 'Users', uid));
-                if (docSnap.exists()) {
-                    const userData = docSnap.data();
-                    setUser(userData);
-                } else {
-                    console.log('User doc missing', uid);
-                }
-            } else {
-                console.log('User not logged in');
-                setUser(null);
-            }
-        });
+        // onAuthStateChanged(auth, async (user) => {
+        //     if (user) {
+        //         const uid = user.uid;
+        //         const docSnap = await getDoc(doc(db, 'Users', uid));
+        //         if (docSnap.exists()) {
+        //             const userData = docSnap.data();
+        //             setUser(userData);
+        //         } else {
+        //             console.log('User doc missing', uid, docSnap.data());
+        //         }
+        //     } else {
+        //         console.log('User not logged in');
+        //         setUser(null);
+        //     }
+        // });
         // onAuthStateChanged(auth, async (user) => {
         //     if (user) {
         //         // User is signed in, see docs for a list of available properties
@@ -56,6 +56,17 @@ const Home = () => {
         //         console.log('user is not signed in');
         //         // ...
         //     }
+        // });
+        const docRef = doc(db, 'Users', 'PqUPGMxRy50n8xYrrFAK');
+        getDoc(docRef).then((doc) => {
+            console.log(doc.data(), doc.data().uid);
+            const snapDoc = doc.data();
+            setUser(snapDoc);
+        });
+        // onSnapshot(docRef, (doc) => {
+        //     console.log(doc.data(), doc.data().uid);
+        //     const snapDoc = doc.data();
+        //     setUser(snapDoc);
         // });
     }, []);
 

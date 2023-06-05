@@ -12,6 +12,7 @@ const AppInput = ({
     onBlur,
     autoCapitalize,
     secureTextEntry,
+    autoCorrect,
 }) => {
     return (
         <TextInput
@@ -25,6 +26,7 @@ const AppInput = ({
             onBlur={onBlur}
             autoCapitalize={autoCapitalize}
             secureTextEntry={secureTextEntry}
+            autoCorrect={autoCorrect}
         />
     );
 };
