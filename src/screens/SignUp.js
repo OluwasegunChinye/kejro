@@ -57,6 +57,7 @@ const SignUp = ({ navigation }) => {
             }}
             validationSchema={SignupSchema}
             onSubmit={async (values) => {
+                setLoading(true)
                 try {
                     await createUserWithEmailAndPassword(
                         auth,
@@ -70,6 +71,7 @@ const SignUp = ({ navigation }) => {
                 } catch (error) {
                     console.log(error);
                 }
+                setLoading(false)
             }}
         >
             {({
@@ -188,6 +190,7 @@ const SignUp = ({ navigation }) => {
                                     title="Create account"
                                     backgroundColor={COLORS.primary}
                                     onPress={handleSubmit}
+                                    // disabled={loading}
                                 />
                             </View>
                         </View>

@@ -24,7 +24,7 @@ const { height, width } = Dimensions.get('screen');
 
 const Home = () => {
     const [profile, setProfile] = useState(null);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -57,18 +57,21 @@ const Home = () => {
         //         // ...
         //     }
         // });
-        const docRef = doc(db, 'Users', 'PqUPGMxRy50n8xYrrFAK');
-        getDoc(docRef).then((doc) => {
-            console.log(doc.data(), doc.data().uid);
-            const snapDoc = doc.data();
-            setUser(snapDoc);
-        });
+        // const docRef = doc(db, 'Users', 'PqUPGMxRy50n8xYrrFAK');
+        // getDoc(docRef).then((doc) => {
+        //     console.log(doc.data(), doc.data().uid);
+        //     const snapDoc = doc.data();
+        //     setUser(snapDoc);
+        // });
         // onSnapshot(docRef, (doc) => {
         //     console.log(doc.data(), doc.data().uid);
         //     const snapDoc = doc.data();
         //     setUser(snapDoc);
         // });
     }, []);
+
+    const loggedUser = auth.currentUser
+    console.log(loggedUser?.email, loggedUser?.firstName)
 
     return (
         <View
